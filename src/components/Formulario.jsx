@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import styled from '@emotion/styled'
 import { yearDiference, incrementMark, incrementPlan } from '../Helpe'
+import PropTypes from "prop-types"
 
 const Campo = styled.div`
 display: flex;
@@ -47,7 +48,7 @@ background-color: red;
 
 `
 
-const Formulario = () => {
+const Formulario = ({setResumen,setShowSpinner}) => {
 
  const [error, setError] = useState(false)
     
@@ -81,7 +82,19 @@ const Formulario = () => {
     base = base * incrementMark(mark)
    
     base = parseFloat(base * incrementPlan(plan)).toFixed(2)
-    console.log(base)
+
+    setShowSpinner(true)
+
+    setTimeout(() => {
+     setShowSpinner(false) 
+     setResumen({
+        cotizacion: Number(base),
+        datos
+    })
+      
+    }, 3000);
+
+  
 
  }
 
@@ -139,6 +152,11 @@ const Formulario = () => {
         <Button>cotizar</Button>
     </form>
   )
+}
+
+Formulario.proptypes = {
+    setResumen: PropTypes.func.isRequired,
+    setShowSpinner: PropTypes.func.isRequired
 }
 
 export default Formulario

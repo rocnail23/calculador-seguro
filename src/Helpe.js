@@ -28,5 +28,8 @@ const incrementPlan = (plan) => {
     return plan == "basico" ? 1.20 : 1.50
 } 
 
+const firstUpperCase = (string) => {
+ return string.at(0).toUpperCase() + string.slice(1)   
+}
 
-export {yearDiference, incrementMark, incrementPlan}
+export {yearDiference, incrementMark, incrementPlan, firstUpperCase}
